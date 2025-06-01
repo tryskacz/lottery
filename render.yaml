@@ -11,3 +11,4 @@ services:
       - key: USER
       - key: PASSWORD
       - key: PGPORT
+      - key: DATA_ENDPOINT
