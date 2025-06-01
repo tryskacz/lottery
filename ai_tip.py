@@ -8,7 +8,10 @@ import os
 
 def nacti_data():
     url = os.getenv("DATA_ENDPOINT")
+    print("Zkouším načíst data...")
     response = requests.get(url, timeout=10)
+    print("Data načtena.")
+
     response.raise_for_status()
     return [radek for radek in response.json() if radek and len(radek) == 7]
 
