@@ -2,6 +2,8 @@ import streamlit as st
 import random
 from ai_tip import vytvor_ai_tip, nacti_data
 from collections import Counter
+import os
+os.environ['STREAMLIT_SERVER_PORT'] = os.getenv("PORT", "10000")
 
 st.title("🎯 AI Tipovač - Sportka")
 
