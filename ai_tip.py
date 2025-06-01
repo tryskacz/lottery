@@ -25,8 +25,10 @@ def natrenuj_model(tahy, N=3):
     y_bin = mlb.fit_transform([set(yy) for yy in y])
 
     X = np.array(X)
-    model = MLPClassifier(hidden_layer_sizes=(128, 64), max_iter=500, random_state=42)
+    print("Trénuji model...")
+    model = MLPClassifier(hidden_layer_sizes=(128, 64), max_iter=100, random_state=42)
     model.fit(X, y_bin)
+    print("Model natrénován.")
 
     return model, mlb
 
