@@ -61,7 +61,7 @@ def nacti_data():
             database=os.getenv("DATABASE"),
             user=os.getenv("USER"),
             password=os.getenv("PASSWORD"),
-            port=int(os.getenv("PORT", 5432))
+            port=int(os.getenv("PGPORT", 5432))
         )
         conn.set_client_encoding('UTF8')
         query = """
