@@ -6,9 +6,4 @@ services:
     startCommand: uvicorn ai_tip:app --host 0.0.0.0 --port 10000
     plan: free
     envVars:
-      - key: HOST
-      - key: DATABASE
-      - key: USER
-      - key: PASSWORD
-      - key: PGPORT
       - key: DATA_ENDPOINT
