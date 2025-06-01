@@ -10,4 +10,4 @@ services:
       - key: DATABASE
       - key: USER
       - key: PASSWORD
-      - key: PORT
+      - key: PGPORT
