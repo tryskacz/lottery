@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: ai-tip
+    name: streamlit-ai-tip
     env: python
     buildCommand: ""
-    startCommand: uvicorn ai_tip:app --host 0.0.0.0 --port 10000
+    startCommand: streamlit run streamlit_app.py
     plan: free
     envVars:
       - key: DATA_ENDPOINT
