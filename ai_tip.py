@@ -1,5 +1,4 @@
-import psycopg2
-import pandas as pd
+import requests
 import numpy as np
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
@@ -12,9 +11,6 @@ import uvicorn
 from typing import List
 import logging
 import traceback
-
-MODEL_PATH = "mlp_model.pkl"
-MLB_PATH = "mlb_encoder.pkl"
 
 # FastAPI server
 app = FastAPI()
@@ -56,22 +52,10 @@ def vytvor_ai_tip(tahy, pocet=6, N=3):
 
 def nacti_data():
     try:
-        conn = psycopg2.connect(
-            host=os.getenv("HOST"),
-            database=os.getenv("DATABASE"),
-            user=os.getenv("USER"),
-            password=os.getenv("PASSWORD"),
-            port=int(os.getenv("PGPORT", 5432))
-        )
-        conn.set_client_encoding('UTF8')
-        query = """
-            SELECT number1, number2, number3, number4, number5, number6, add_number
-            FROM sportka_draws
-            ORDER BY draw_date ASC
-        """
-        df = pd.read_sql(query, conn)
-        conn.close()
-        return df.values.tolist()
+        url = os.getenv("DATA_ENDPOINT")  # např. https://mojedomena.cz/sportka_json.php
+        response = requests.get(url)
+        response.raise_for_status()
+        return [radek for radek in response.json() if radek and len(radek) == 7]
     except Exception as e:
         return JSONResponse(status_code=500, content={
             "error": str(e),
